@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Tasks</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      padding: 40px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+
+    form {
+      max-width: 400px;
+      margin: 20px auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    input[type="text"] {
+      display: block;
+      width: 95%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 14px;
+    }
+
+    input[type="submit"] {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 10px;
+      width: 100%;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    input[type="submit"]:disabled {
+      background-color: #aaa;
+      cursor: not-allowed;
+    }
+
+  </style>
+</head>
+<body>
+
+  <h1>Tasks</h1>
+
+  <form>
+    <input id="task" placeholder="Username" type="text">
+    <input id="task2" placeholder="Password" type="text">
+    <input id="submit" type="submit">
+  </form>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function(){
+        document.querySelector('#submit').disabled = true;
+
+        function checkFields() {
+            const username = document.querySelector('#task').value.trim();
+            const password = document.querySelector('#task2').value.trim();
+            if (username.length > 0 && password.length > 0) {
+                document.querySelector('#submit').disabled = false;
+            } else {
+                document.querySelector('#submit').disabled = true;
+            }
+        }
+
+        document.querySelector('#task').onkeyup = checkFields;
+        document.querySelector('#task2').onkeyup = checkFields;
+
+        document.querySelector('form').onsubmit = () => {
+            const task = document.querySelector('#task').value;
+            const output = "successfully logged in!";
+            alert(output);
+            document.querySelector('#task').value = '';
+            document.querySelector('#task2').value = '';
+            document.querySelector('#submit').disabled = true;
+            return false;
+        }
+    });
+  </script>
+
+</body>
+</html>
